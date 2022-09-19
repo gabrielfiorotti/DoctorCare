@@ -18,4 +18,4 @@
 
 * You can check the full result at: https://gabrielfiorotti.github.io/DoctorCare/
 
-<img src="./assets/Readme-DoctorCare.jpg">
+<img src="./assets/Preview-DoctorCare.png">
