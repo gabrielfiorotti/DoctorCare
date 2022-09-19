@@ -1,0 +1,787 @@
+/*================== GENERAL ========================*/
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    /* 1rem = 10px */
+
+    --primary-color: hsl(170, 100%, 26%);
+    --headline: hsl(210, 11%, 15%);
+    --paragraph: hsl(210, 9%, 31%);
+    
+    --brand-beige: hsl(39, 100%, 97%);
+    --brand-light: hsl(148, 23%, 89%);
+    --brand-button-hover: hsl(170, 100%, 14%);
+
+    --nav-height: 7.2rem;
+
+    --bg-light: hsl(180, 14%, 97%)
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'DM Sans';
+    font-size: 1.6rem;
+    text-align: center;
+
+    /* sobrepor o scroll */
+    overflow: overlay;
+
+    background-color: var(--bg-light);
+}
+
+
+/* ========== mobile first ============ */
+
+.wrapper {
+    width: min(50rem, 100%);
+    /*se a largura da tela for menor que 50 rem, ele vai aplicar o 100% da caixa que ele está, se a largura for maior que 50rem ele vai aplicar o 50 rem.
+    Isso é pra deixar responsivo.
+    */
+
+    margin-inline: auto;
+    padding-inline: 2.4rem;
+    /* inline = right + left */
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    /* will always respect the width of the container where the img is*/
+}
+
+section {
+    padding-block: 10rem;
+    /* block = top and bottom */
+}
+
+section header h1 {
+    font-size: 3.4rem;
+    color: var(--headline);
+    line-height: 130%;
+}
+
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+    color: var(--headline);
+}
+
+section header h4 {    
+    font-size: 1.4rem;
+    line-height: 150%;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    color: var(--primary-color);
+
+    margin-bottom: 1.6rem;
+}
+
+section .content p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    color: var(--paragraph);
+}
+
+.button {
+    padding: 1.6rem 3.2rem;
+    width: fit-content;
+
+    background: var(--primary-color);
+    border: none;
+    border-radius: 4rem;
+    margin-bottom: 6rem;
+    
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+
+
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: var(--brand-button-hover);
+    transition: background 200ms;
+}
+
+/*================== NAVIGATION ========================*/
+
+nav {
+    display: flex;
+
+    height: var(--nav-height);
+
+    position: fixed;
+    top: 0;
+    width: 100vw;
+
+    z-index: 100;
+}
+
+
+nav .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2.4rem;
+} 
+
+nav.scroll {
+    background: var(--primary-color);
+    transition: background 200ms;
+}
+
+nav.scroll .logo path {
+    fill: white;
+}
+
+nav.scroll button path {
+    stroke: white;
+}
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+nav .menu,
+nav .close-menu {
+    position: fixed;
+}
+/*============== MENU-EXPANDED ===================*/
+
+body.menu-expanded {
+    overflow: hidden;
+}
+
+/* exceto -> :not() */
+body.menu-expanded > :not(nav) {
+    visibility: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* quando o body estiver com a classe 'menu-expanded, ele vai fazer tal coisa nas classes escolhidas:  */
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+.menu {
+    transform: translateY(100%);
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: var(--nav-height);
+
+    transform: translateY(0);
+
+    transition: transform 300ms;
+
+}
+
+
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+    
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu .button {
+    background: #fff;
+    border-radius: 4rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    display: inline-block;
+    padding: 16px 32px;
+
+    margin-top: 4.8rem;
+    margin-bottom: 8rem;
+}
+
+.menu .button:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded nav button {
+    position: relative;
+    z-index: 10;
+}
+
+body.menu-expanded .logo path {
+    fill: white;
+}
+
+body.menu-expanded button path {
+    stroke: white;
+}
+
+/* ========== HOME =============== */
+
+#home {
+    padding-block: 0;
+    padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before {
+    content: '';
+    width: 100%;
+    height: calc(108rem + var(--nav-height));
+    background-color: var(--brand-light);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+#home h1 {
+    margin-bottom: 2.4rem;
+}
+
+#home p {
+    font-size: 1.8rem;
+    line-height: 150%;
+    font-weight: 400;
+    color: var(--paragraph);
+    margin-bottom: 3.2rem;
+}
+
+#home .button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-img {
+    width: 26.4rem;
+    display: block;
+    margin-inline: auto;
+    object-position: 0 2rem;
+}
+
+
+.stats-container {
+    width: 100%;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    background: var(--brand-beige);
+    gap: 6rem;
+
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+    
+}
+
+
+.stat {
+    width: 20rem;
+}
+
+.stat h3 {
+    font-size: 4.8rem;
+    color: var(--headline);
+    line-height: 130%;
+    margin-bottom: 0.4rem;
+}
+
+.stat p {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+
+
+/* ========== SERVICES ========== */
+
+#services header h2 {
+    margin-bottom: 6rem;
+}
+
+#services .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+#services .card {
+    padding: 2.4rem;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--brand-light);
+    border-radius: .6rem;
+}
+
+#services .card h3 {
+    margin-block: 1.6rem;
+    /* margin-block = top and bottom */
+
+
+}
+
+/* ========== ABOUT ========== */
+
+#about {
+    text-align: left;
+    background-color: var(--brand-beige);
+}
+
+#about header h2 {
+    margin-bottom: 2.4rem;
+}
+
+#about .content p {
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
+    text-align: justify;
+}
+
+
+/* ========== CONTACT ========== */
+
+#contact {
+    text-align: left;
+}
+
+#contact header {
+    margin-bottom: 3.2rem;
+}
+
+#contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+
+/* ========== FOOTER ========== */
+
+footer {
+    background-color: var(--primary-color);
+    padding-block: 6rem;
+}
+
+footer .logo {
+    /* changing the display inline to inline-block to unlock 'a' properties */
+    display: inline-block;
+    margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+    width: 23rem;
+    height: 3rem;
+}
+
+footer .logo path {
+    fill:#fff;
+}
+
+footer p {
+    color: var(--brand-beige);
+    line-height: 2;
+    margin-bottom: 3.2rem;
+}
+
+
+
+/* ============== BACK TO TOP ================ */
+
+#backToTopButton {
+    position: fixed;
+    bottom: 2rem;
+    right: 2.5rem;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(100%);
+    /* push to outside of the page to create an animation when it comes up */
+    transition: 260ms;
+}
+
+
+/* sempre que esse id tiver a classe .show nele, vai ser com as seguintes config: */
+
+#backToTopButton.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+    /* back to normal position */
+}
+
+
+
+
+
+
+
+
+/* ============== LAPTOP =============== */
+
+@media (min-width: 1024px) {
+
+
+/*======= GENERAL ========*/
+
+body {
+    /* tirando a sobreposição do conteúdo ao scroll */
+    overflow: auto;
+}
+
+
+.wrapper {
+    width: min(112rem, 100%);
+    display: grid;
+}
+
+section {
+    padding-block: 16rem;
+}
+
+section header h2 {
+    font-size: 4rem;
+    line-height: 5.2rem;
+}
+/*== reset to the initial CSS configs ==*/
+
+/* obs: chamando os elementos com bastante especificidade para ter certeza que vai aplicar */
+
+/* nav */
+nav#navigation .wrapper * {
+    margin: 0;
+    padding: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    font-weight: initial;
+    transform: initial;
+    color: initial;
+    background-color: initial;
+}
+
+
+nav#navigation .close-menu,
+nav#navigation .open-menu,
+nav#navigation .social-links {
+    display: none;
+}
+
+nav#navigation .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 62%;
+}
+
+nav#navigation .menu ul:nth-child(1) {
+    display: flex;
+    gap: 3.2rem;
+}
+
+nav#navigation .menu ul li a {
+    color: var(--primary-color);
+    opacity: 0.7;
+    font-size: 1.7rem;
+}
+
+nav#navigation .menu a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2.4rem;
+
+    border: 2px solid var(--primary-color);
+    border-radius: 4rem;
+
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    text-transform: uppercase;
+}
+
+nav#navigation.scroll .menu ul li a {
+    color: var(--brand-light);
+}
+
+nav#navigation.scroll .menu a.button {
+    border-color: #fff;
+    color: #fff;
+}
+
+nav#navigation .menu li a.active-section,
+nav#navigation .menu li a:hover {
+    opacity: 1;
+    font-weight: 700;
+    transition: opacity 0.4s;
+}
+
+
+nav#navigation .menu li a::after {
+    content: '';
+    width: 0%;
+    /* width starts from 0 so when hover it comes to 100% */
+    height: .3rem;
+    background-color: var(--primary-color);
+    
+    display: block;
+
+    /* pushing the bar to the bottom */
+    position: relative;
+    bottom: -1.9rem;
+    left: -0.8rem;
+
+    transition: width 0.2s;
+}
+
+nav#navigation.scroll .menu li a::after {
+    background-color: #fff;
+}
+
+
+/* quando o 'a' estiver em estado hover, pegue o elemento 'after' e faça isso: */
+nav#navigation .menu li a.active-section::after,
+nav#navigation .menu li a:hover::after{
+
+    width: 100%;
+    
+    /* increasing the width*/
+    padding-inline: 1rem;
+}
+
+nav#navigation .menu a.button.active-section,
+nav#navigation .menu a.button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    filter: brightness(1.2);
+}
+
+
+
+/* =========== HOME =============== */
+
+#home::before {
+    height: calc(74rem - var(--nav-height));
+}
+
+#home .wrapper {
+    grid-template-columns: 60.5rem 1fr;
+    /* repare que coloquei 2 valores, entao são 2 colunas */
+
+    /* creating areas to insert the contents  */
+    grid-template-areas: 
+    'A B'
+    'C C';
+}
+
+
+#home .column1 {
+    grid-area: A;
+    text-align: left;
+
+    /* alinhando só ele ao centro vertical da caixa dele */
+    align-self: center;
+}
+
+#home h1 {
+    font-size: 5.2rem;
+}
+
+#home .content p {
+    font-size: 1.8rem;
+}
+
+#home .button {
+    margin: 0;
+}
+
+#home .colum2 {
+    grid-area: B;
+}
+
+#home img {
+    width: 34rem;
+}
+
+#home .stats-container {
+    grid-area: C;
+    flex-direction: row;
+
+    padding: 4rem;
+    gap: 0;
+}
+
+#home .stats-container .stat {
+    /* deixando a largura de cada caixa interna por igual*/
+    flex: 1;
+}
+
+/* pegando o .stat que anterior a ele tenha um .stat,
+nesse caso são 2, usando isso pra criar a barrinha entre eles:  */
+#home .stats-container .stat + .stat {
+    border-left: 1px solid var(--primary-color);
+}
+
+
+
+
+/* =========== SERVICES =============== */
+
+
+#services .cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 10%;
+}
+
+
+
+/* =========== ABOUT =============== */
+
+
+#about .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'B A';
+    gap: 6.3rem;
+}
+
+
+#about .column1 {
+    grid-area: A;
+    align-self: center;
+}
+
+#about .column2 {
+    grid-area: B;
+}
+
+#about .content p {
+    margin-bottom: 0;
+}
+
+
+
+/* =========== CONTACT =============== */
+
+
+#contact .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'A B';
+}
+
+#contact .column1 {
+    grid-area: A;
+}
+
+#contact .column2 {
+    grid-area: B;
+}
+
+
+
+footer {
+    font-size: 1.8rem;
+}
+
+footer .wrapper {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+}
