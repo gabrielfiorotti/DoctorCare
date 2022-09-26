@@ -25,10 +25,6 @@ function onScroll() {
 
 /* A função abaixo serve para deixar aceso a seção na barra de navegação quando
 estivermos na seção.
-
-Eu entendi a lógica geral da coisa mas é bem confusa e nao saberia fzer sozinho.
-
-Mayk começa explicá-la em 1:36:52 do vídeo 5 do NLW 8
 */
 
 function activateMenuAtCurrentSection(section) {
@@ -56,8 +52,6 @@ const sectionTop = section.offsetTop
 const sectionHeight = section.offsetHeight
 
 
-
-// A partir daqui peguei o codigo JS do repositorio da rocket (só dessa função)
 
 const sectionTopReachOrPassedTargetline = targetLine >= sectionTop
 
